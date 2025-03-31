@@ -1,8 +1,25 @@
-console.log("ingrese el numero inicial del rango : 10")
-const numero = parseInt ("rango")
-if (numero>50){
-    console.log("cantidad de numeros pares :21")
-    console.log("cantidad de numeros impares :20")
-}else{
-console.log("el numero de rango es del 10 al 50")
-}
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.question('Ingresa el inicio y final (ej. 10 50): ', (answer) => {
+  const [inicio, final] = answer.split(' ').map(Number);
+  
+  if (isNaN(inicio) || isNaN(final)) {
+    console.log('Debes ingresar dos números válidos!');
+  } else {
+    let pares = 0;
+    for (let i = inicio; i <= final; i++) {
+      if (i % 2 === 0) pares++;
+    }
+    console.log(`\nResultado:`);
+    console.log(`Pares: ${pares}`);
+    console.log(`Impares: ${final - inicio + 1 - pares}`);
+  }
+  
+  rl.close();
+});
+ 
